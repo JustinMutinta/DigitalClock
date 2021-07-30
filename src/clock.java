@@ -1,38 +1,48 @@
 import javax.swing.*;
 import java.awt.*;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
 public class clock extends JFrame{
+    //JFrame timeFrame;
+    JLabel timeLabel;
+    SimpleDateFormat timeFormat;
+    String time;
+
     public clock(){
-        super("Clock");
 
-        setSize(700,150);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        setTitle("Clock");
+        setLayout(new FlowLayout());
+        setSize(500,200);
 
-        FlowLayout flo = new FlowLayout();
-        setLayout(flo);
+        timeFormat = new SimpleDateFormat("hh:mm:ss a");
 
-        JPanel panel1 = new JPanel();
-        panel1.setSize(50,50);
+        timeLabel = new JLabel();
 
-        add(panel1);
+        add(timeLabel);
 
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
-        LocalDateTime now = LocalDateTime.now();
 
-        JLabel label3 = new JLabel(dtf.format(now));
-        add(label3);
 
-        setVisible(true); //needs to be last.
 
+
+        setVisible(true);
+
+        setTime();
+    }
+
+    public void setTime(){
+        while(true){
+            time = timeFormat.format(Calendar.getInstance().getTime());
+            timeLabel.setText(time);
+        }
     }
 
 
 
+
+
     public static void main(String[] args){
-
-            clock newClock = new clock();
-
+        clock newClock = new clock();
     }
 }
