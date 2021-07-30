@@ -14,11 +14,12 @@ public class clock extends JFrame{
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setTitle("Clock");
         setLayout(new FlowLayout());
-        setSize(500,200);
+        setSize(500,100);
 
-        timeFormat = new SimpleDateFormat("hh:mm:ss a");
+        timeFormat = new SimpleDateFormat("HH:mm:ss a");
 
         timeLabel = new JLabel();
+        timeLabel.setFont(new Font("times roman plain",Font.BOLD,50));
 
         add(timeLabel);
 
@@ -35,6 +36,12 @@ public class clock extends JFrame{
         while(true){
             time = timeFormat.format(Calendar.getInstance().getTime());
             timeLabel.setText(time);
+
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         }
     }
 
